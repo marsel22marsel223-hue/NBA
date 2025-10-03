@@ -1,0 +1,247 @@
+<!-- save as index.html -->
+<!doctype html>
+<html lang="id">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width,initial-scale=1" />
+  <title>Steph Curry Fanpage — Starter</title>
+  <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@300;600;800&display=swap" rel="stylesheet">
+  <style>
+    :root{
+      --warrior-blue:#1D428A;
+      --warrior-yellow:#FFC72C;
+      --muted:#f4f6fb;
+      --card:#ffffff;
+      --glass: rgba(255,255,255,0.08);
+    }
+    *{box-sizing:border-box}
+    body{
+      margin:0;
+      font-family: "Montserrat", system-ui, -apple-system, "Segoe UI", Roboto, "Helvetica Neue", Arial;
+      background: linear-gradient(180deg,#08102b 0%, #071033 40%, #0b1738 100%);
+      color:#e9eef8;
+      -webkit-font-smoothing:antialiased;
+      -moz-osx-font-smoothing:grayscale;
+      line-height:1.4;
+    }
+
+    /* NAV */
+    .nav{
+      display:flex;
+      gap:18px;
+      align-items:center;
+      justify-content:space-between;
+      padding:18px 28px;
+      position:sticky;
+      top:0;
+      background: linear-gradient(90deg, rgba(5,10,30,0.7), rgba(2,6,20,0.3));
+      backdrop-filter: blur(6px);
+      z-index:10;
+    }
+    .brand{display:flex;gap:12px;align-items:center}
+    .logo{
+      width:44px;height:44px;border-radius:10px;
+      background: linear-gradient(135deg,var(--warrior-yellow),#f5b400);
+      display:flex;align-items:center;justify-content:center;
+      color:var(--warrior-blue);font-weight:800;
+      box-shadow: 0 6px 18px rgba(0,0,0,0.4);
+    }
+    .nav a{color:var(--muted);text-decoration:none;font-weight:600;opacity:.95}
+    .nav .cta{
+      background:var(--warrior-yellow);color:var(--warrior-blue);
+      padding:8px 12px;border-radius:10px;font-weight:800;
+      box-shadow: 0 6px 18px rgba(255,199,44,0.12);
+    }
+
+    /* HERO */
+    .hero{
+      display:grid;
+      grid-template-columns: 1fr 420px;
+      gap:28px;
+      align-items:center;
+      padding:48px 48px 36px;
+    }
+    .hero-inner{
+      max-width:780px;
+    }
+    h1{
+      margin:0 0 12px 0;
+      font-size:46px;
+      color:var(--warrior-yellow);
+      letter-spacing:0.6px;
+    }
+    p.lead{
+      margin:0 0 20px 0;
+      color:#dfe9ff;
+      opacity:.95;
+      font-size:18px;
+    }
+    .actions{display:flex;gap:12px}
+    .btn{
+      padding:10px 14px;border-radius:10px;font-weight:700;border:none;cursor:pointer;
+    }
+    .btn-outline{
+      background:transparent;color:var(--warrior-yellow);border:2px solid rgba(255,199,44,0.18);
+    }
+    .btn-primary{
+      background:var(--warrior-yellow);color:var(--warrior-blue);
+      box-shadow:0 8px 24px rgba(255,199,44,0.12);
+    }
+
+    /* profile card */
+    .card{
+      background: linear-gradient(180deg, rgba(255,255,255,0.03), rgba(255,255,255,0.01));
+      border-radius:16px;padding:18px;border:1px solid rgba(255,255,255,0.04);
+      box-shadow: 0 12px 40px rgba(2,6,20,0.6);
+    }
+    .profile{
+      display:flex;gap:16px;align-items:center;
+    }
+    .profile img{
+      width:120px;height:120px;border-radius:14px;object-fit:cover;border:4px solid rgba(255,255,255,0.06);
+      background:linear-gradient(180deg,#111 0%, #222 100%);
+    }
+    .profile h2{margin:0;font-size:20px;color:#fff}
+    .profile .meta{font-size:13px;opacity:.85;color:#cfe1ff}
+
+    .stats{
+      display:flex;gap:12px;margin-top:14px;
+    }
+    .stat{
+      flex:1;background:linear-gradient(180deg, rgba(255,255,255,0.02), rgba(255,255,255,0.01));
+      padding:10px;border-radius:10px;text-align:center;
+    }
+    .stat b{display:block;font-size:18px;color:var(--warrior-yellow)}
+    .stat span{display:block;font-size:12px;color:#cfe1ff;opacity:.9}
+
+    /* gallery and about */
+    .section{
+      padding:26px 48px;
+    }
+    .grid{
+      display:grid;grid-template-columns: repeat(3,1fr);gap:18px;
+    }
+    .photo{
+      background:var(--card);border-radius:12px;overflow:hidden;border:1px solid rgba(255,255,255,0.03);
+    }
+    .photo img{width:100%;height:180px;object-fit:cover;display:block}
+    .about{
+      margin-top:18px;background:linear-gradient(180deg, rgba(255,255,255,0.02), rgba(255,255,255,0.01));
+      padding:16px;border-radius:12px;border:1px solid rgba(255,255,255,0.03);
+    }
+
+    footer{
+      padding:18px 48px;text-align:center;color:#cbd9ff;opacity:.8;font-size:13px;
+      border-top:1px solid rgba(255,255,255,0.02);
+      margin-top:28px;
+    }
+
+    /* responsive */
+    @media (max-width:1000px){
+      .hero{grid-template-columns:1fr 1fr}
+      .grid{grid-template-columns:repeat(2,1fr)}
+    }
+    @media (max-width:720px){
+      .hero{grid-template-columns:1fr;gap:14px;padding:28px}
+      .nav{padding:12px 16px}
+      .hero-inner h1{font-size:34px}
+      .profile img{width:96px;height:96px}
+      .grid{grid-template-columns:1fr}
+      .section{padding:18px}
+      .nav a{font-size:14px}
+    }
+  </style>
+</head>
+<body>
+
+  <nav class="nav">
+    <div class="brand">
+      <div class="logo">SC</div>
+      <div>
+        <div style="font-weight:800">Steph Fan</div>
+        <div style="font-size:12px;opacity:.8;margin-top:2px">Fan page • Starter template</div>
+      </div>
+    </div>
+    <div style="display:flex;gap:12px;align-items:center">
+      <a href="#about">About</a>
+      <a href="#gallery">Gallery</a>
+      <a href="#stats">Stats</a>
+      <a class="cta" href="#contact">Contact</a>
+    </div>
+  </nav>
+
+  <header class="hero">
+    <div class="hero-inner">
+      <h1>Stephen Curry — The Shooter</h1>
+      <p class="lead">Situs penggemar sederhana: highlight, stats, dan galeri. Template ini responsif dan mudah disesuaikan — ganti gambar, teks, dan warna sesuai kebutuhan.</p>
+      <div class="actions">
+        <button class="btn btn-primary">Lihat Highlight</button>
+        <button class="btn btn-outline">Pelajari Lebih</button>
+      </div>
+
+      <div id="about" class="about" style="margin-top:18px">
+        <strong>Ringkasan singkat</strong>
+        <p style="margin:8px 0 0 0;color:#d8e9ff;opacity:.95">
+          Stephen Curry dikenal karena kemampuan tembakan tiga poinnya, kecepatan kontrol bola, dan pengaruh besar pada permainan modern. (Isi bio singkat atau tautkan sumber resmi.)
+        </p>
+      </div>
+    </div>
+
+    <aside class="card">
+      <div class="profile">
+        <!-- Ganti src dengan foto pilihanmu -->
+        <img src="https://via.placeholder.com/400x400?text=Foto+Steph+di+gantikan" alt="Steph Curry photo">
+        <div>
+          <h2>Stephen Curry</h2>
+          <div class="meta">Guard • Golden State Warriors • #30</div>
+
+          <div class="stats" style="margin-top:12px">
+            <div class="stat"><b>30</b><span>Jersey</span></div>
+            <div class="stat"><b>6'2"</b><span>Height</span></div>
+            <div class="stat"><b>4x</b><span>Championships</span></div>
+          </div>
+        </div>
+      </div>
+
+      <div style="margin-top:14px;display:flex;gap:8px;justify-content:space-between">
+        <button class="btn btn-primary" style="flex:1">Subscribe</button>
+        <button class="btn btn-outline" style="flex:1">Follow</button>
+      </div>
+    </aside>
+  </header>
+
+  <main>
+    <section id="gallery" class="section">
+      <h3 style="margin:0 0 12px 0;color:var(--warrior-yellow)">Gallery</h3>
+      <p style="margin:0 0 18px 0;opacity:.9;color:#d8e9ff">Ganti gambar dengan foto resmi (pastikan hak penggunaan) atau foto pribadi.</p>
+
+      <div class="grid">
+        <div class="photo card">
+          <img src="https://via.placeholder.com/800x600?text=Foto+1" alt="foto1">
+        </div>
+        <div class="photo card">
+          <img src="https://via.placeholder.com/800x600?text=Foto+2" alt="foto2">
+        </div>
+        <div class="photo card">
+          <img src="https://via.placeholder.com/800x600?text=Foto+3" alt="foto3">
+        </div>
+      </div>
+    </section>
+
+    <section id="stats" class="section" style="padding-top:8px">
+      <h3 style="margin:0 0 12px 0;color:var(--warrior-yellow)">Career Highlights</h3>
+      <ul style="color:#dfe9ff;opacity:.95">
+        <li>MVP (unanimous) — (tahun)</li>
+        <li>Multiple NBA Championships — (tahun)</li>
+        <li>All-time 3PT leader — (update sesuai sumber resmi)</li>
+      </ul>
+      <p style="margin-top:12px;color:#cfe1ff;opacity:.9">Catatan: kalau kamu mau data nyata (stats musim & angka akurat), aku bisa bantu cari dan masukkan — mau aku tambahkan?</p>
+    </section>
+  </main>
+
+  <footer id="contact">
+    Template dibuat cepat — edit bebas. Mau aku tambahkan:
+    <strong>biografi lengkap, carousel foto, atau halaman statistik dinamis?</strong>
+  </footer>
+</body>
+</html>
